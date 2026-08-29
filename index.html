@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sovereign AI Workbench</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BACKGROUND EFFECT -->
+    <div class="background-grid"></div>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="brand-section">
+            <div class="logo-box">AI</div>
+
+            <div>
+                <h1>SOVEREIGN AI WORKBENCH</h1>
+                <p>Private • Secure • On-Premise Intelligence</p>
+            </div>
+        </div>
+
+
+        <div class="header-status">
+
+            <div class="demo-badge">
+                DEMO MODE
+            </div>
+
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                SYSTEM ONLINE
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+        <aside>
+
+            <div class="sidebar-title">
+                CONTROL CENTER
+            </div>
+
+            <nav>
+
+                <div class="nav-item active-nav" onclick="showPage('dashboard')">
+                    <span class="nav-icon">▣</span>
+                    Dashboard
+                </div>
+
+                <div class="nav-item" onclick="showPage('agent')">
+                    <span class="nav-icon">◉</span>
+                    AI Agent
+                </div>
+
+                <div class="nav-item" onclick="showPage('documents')">
+                    <span class="nav-icon">▤</span>
+                    Documents
+                </div>
+
+                <div class="nav-item" onclick="showPage('vision')">
+                    <span class="nav-icon">◈</span>
+                    Vision AI
+                </div>
+
+                <div class="nav-item" onclick="showPage('activity')">
+                    <span class="nav-icon">⚡</span>
+                    Agent Activity
+                </div>
+
+                <div class="nav-item" onclick="showPage('analytics')">
+                    <span class="nav-icon">◫</span>
+                    Analytics
+                </div>
+
+                <div class="nav-item" onclick="showPage('reports')">
+                    <span class="nav-icon">▧</span>
+                    Reports
+                </div>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="security-card">
+
+                    <div class="security-icon">🔒</div>
+
+                    <div>
+                        <strong>Data Protected</strong>
+                        <p>On-Premise Mode</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main>
+
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="page active-page">
+
+                <div class="page-heading">
+
+                    <div>
+                        <span class="eyebrow">OVERVIEW</span>
+
+                        <h2>System Command Center</h2>
+
+                        <p class="subtitle">
+                            Monitor your sovereign AI infrastructure in real time.
+                        </p>
+                    </div>
+
+                    <div class="time-box">
+                        <span>AI INFRASTRUCTURE</span>
+                        <strong>OPERATIONAL</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="stats-container">
+
+                    <div class="stat-card">
+
+                        <div class="card-top">
+                            <div class="stat-icon">🤖</div>
+                            <span class="status-badge active">ACTIVE</span>
+                        </div>
+
+                        <p>Active Agents</p>
+
+                        <h3 class="number">4</h3>
+
+                        <small>Autonomous workflows running</small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="card-top">
+                            <div class="stat-icon">📄</div>
+                            <span class="status-badge secured">SECURED</span>
+                        </div>
+
+                        <p>Documents</p>
+
+                        <h3 class="number">328</h3>
+
+                        <small>Private knowledge base indexed</small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="card-top">
+                            <div class="stat-icon">⚠</div>
+                            <span class="status-badge warning-badge">REVIEW</span>
+                        </div>
+
+                        <p>Alerts</p>
+
+                        <h3 class="number">7</h3>
+
+                        <small>Items requiring attention</small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SYSTEM HEALTH -->
+
+                <div class="dashboard-grid">
+
+                    <div class="health-section">
+
+                        <div class="section-header">
+
+                            <div>
+                                <span class="eyebrow">INFRASTRUCTURE</span>
+                                <h3>System Health</h3>
+                            </div>
+
+                            <span class="overall-health">
+                                ● 96% Healthy
+                            </span>
+
+                        </div>
+
+
+                        <div class="health-item">
+                            <div>
+                                <span class="health-dot"></span>
+                                AI Server
+                            </div>
+
+                            <span class="healthy">Healthy</span>
+                        </div>
+
+
+                        <div class="health-item">
+                            <div>
+                                <span class="health-dot"></span>
+                                Knowledge Base
+                            </div>
+
+                            <span class="healthy">Connected</span>
+                        </div>
+
+
+                        <div class="health-item">
+                            <div>
+                                <span class="health-dot"></span>
+                                Vision Model
+                            </div>
+
+                            <span class="healthy">Active</span>
+                        </div>
+
+
+                        <div class="health-item">
+                            <div>
+                                <span class="health-dot"></span>
+                                Security Layer
+                            </div>
+
+                            <span class="healthy">Protected</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUICK INSIGHT -->
+
+                    <div class="quick-insight">
+
+                        <span class="eyebrow">AI INSIGHT</span>
+
+                        <h3>Machine-17</h3>
+
+                        <div class="machine-status">
+
+                            <div class="machine-circle">
+                                89%
+                            </div>
+
+                            <div>
+                                <p>Diagnosis Confidence</p>
+                                <strong>Bearing degradation detected</strong>
+                            </div>
+
+                        </div>
+
+                        <button onclick="showPage('agent')">
+                            Open AI Analysis →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- AI AGENT -->
+
+            <section id="agent" class="page">
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <span class="eyebrow">PRIVATE INTELLIGENCE</span>
+
+                        <h2>AI Agent Workspace</h2>
+
+                        <p class="subtitle">
+                            Query confidential industrial data using your sovereign AI.
+                        </p>
+
+                    </div>
+
+                    <div class="agent-status">
+                        <span class="live-dot"></span>
+                        AI READY
+                    </div>
+
+                </div>
+
+
+                <div class="chat-container">
+
+                    <div class="chat-header">
+
+                        <div class="chat-ai">
+
+                            <div class="ai-avatar">AI</div>
+
+                            <div>
+                                <strong>Sovereign Industrial Agent</strong>
+                                <p>Private model • On-Premise</p>
+                            </div>
+
+                        </div>
+
+                        <span class="secure-chat">🔒 Secure Session</span>
+
+                    </div>
+
+
+                    <div id="chat-box">
+
+                        <div class="message ai-message">
+
+                            <strong>AI Assistant</strong>
+
+                            <p>
+                                Hello! I am your private industrial AI assistant.
+                                I can analyze maintenance records, documents,
+                                sensor information and inspection data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-input-area">
+
+                        <input
+                            type="text"
+                            id="user-input"
+                            placeholder="Ask about machines, documents or industrial issues..."
+                        >
+
+                        <button onclick="sendMessage()">
+                            Send →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- DOCUMENTS -->
+
+            <section id="documents" class="page">
+
+                <span class="eyebrow">KNOWLEDGE BASE</span>
+
+                <h2>Confidential Documents</h2>
+
+                <p class="subtitle">
+                    Securely upload and index documents inside your private AI environment.
+                </p>
+
+
+                <div class="upload-container">
+
+                    <div class="upload-icon">↑</div>
+
+                    <h3>Upload Confidential Document</h3>
+
+                    <p>
+                        Files remain inside your sovereign infrastructure.
+                    </p>
+
+                    <input
+                        type="file"
+                        id="document-file"
+                        onchange="uploadDocument()"
+                    >
+
+                    <p id="document-status">
+                        Ready for secure processing
+                    </p>
+
+                </div>
+
+
+                <div class="document-list">
+
+                    <div class="list-heading">
+
+                        <h3>Indexed Knowledge Base</h3>
+
+                        <span>328 DOCUMENTS</span>
+
+                    </div>
+
+
+                    <div class="document-item">
+
+                        <div>
+                            <span class="doc-icon">📄</span>
+                            Machine-17 Maintenance Manual
+                        </div>
+
+                        <span class="processed">● Processed</span>
+
+                    </div>
+
+
+                    <div class="document-item">
+
+                        <div>
+                            <span class="doc-icon">📄</span>
+                            Industrial Safety Guidelines
+                        </div>
+
+                        <span class="processed">● Processed</span>
+
+                    </div>
+
+
+                    <div class="document-item">
+
+                        <div>
+                            <span class="doc-icon">📄</span>
+                            Machine Sensor History
+                        </div>
+
+                        <span class="processed">● Processed</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- VISION AI -->
+
+            <section id="vision" class="page">
+
+                <span class="eyebrow">MULTIMODAL INTELLIGENCE</span>
+
+                <h2>Vision AI Inspection</h2>
+
+                <p class="subtitle">
+                    Analyze industrial equipment images using private vision models.
+                </p>
+
+
+                <div class="vision-container">
+
+                    <div class="vision-upload">
+
+                        <input
+                            type="file"
+                            id="image-upload"
+                            accept="image/*"
+                            onchange="previewImage()"
+                        >
+
+                        <div id="image-preview-container">
+
+                            <div class="vision-placeholder">
+
+                                <div class="vision-icon">◈</div>
+
+                                <h3>Upload Inspection Image</h3>
+
+                                <p>
+                                    PNG, JPG or industrial inspection imagery
+                                </p>
+
+                            </div>
+
+                            <img
+                                id="image-preview"
+                                src=""
+                                alt="Uploaded Preview"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="analyze-btn" onclick="analyzeImage()">
+                        ✦ Analyze with Vision AI
+                    </button>
+
+
+                    <div id="vision-result"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- AGENT ACTIVITY -->
+
+            <section id="activity" class="page">
+
+                <span class="eyebrow">TRANSPARENT AI WORKFLOW</span>
+
+                <h2>Agent Activity</h2>
+
+                <p class="subtitle">
+                    Track how autonomous agents process and validate each request.
+                </p>
+
+
+                <div class="activity-container">
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot completed">✓</div>
+
+                        <div class="timeline-content">
+                            <strong>Received User Request</strong>
+                            <p>Industrial analysis request initialized</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot completed">✓</div>
+
+                        <div class="timeline-content">
+                            <strong>Retrieved Knowledge Base</strong>
+                            <p>Maintenance manual and machine history retrieved</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot completed">✓</div>
+
+                        <div class="timeline-content">
+                            <strong>Analyzed Inspection Data</strong>
+                            <p>Vision and sensor information processed</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot completed">✓</div>
+
+                        <div class="timeline-content">
+                            <strong>Compared Historical Patterns</strong>
+                            <p>Anomaly detection completed</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot completed">✓</div>
+
+                        <div class="timeline-content">
+                            <strong>Generated AI Diagnosis</strong>
+                            <p>Probable failure cause identified</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot warning-dot">!</div>
+
+                        <div class="timeline-content warning-content">
+                            <strong>Human Approval Required</strong>
+                            <p>Final operational decision requires expert review</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ANALYTICS -->
+
+            <section id="analytics" class="page">
+
+                <span class="eyebrow">PERFORMANCE INTELLIGENCE</span>
+
+                <h2>Industrial Analytics</h2>
+
+                <p class="subtitle">
+                    AI-powered insights from your sovereign infrastructure.
+                </p>
+
+
+                <div class="analytics-grid">
+
+                    <div class="analytics-box">
+
+                        <h3>System Performance</h3>
+
+
+                        <div class="progress-row">
+
+                            <div class="progress-label">
+                                <span>Machine Health</span>
+                                <strong>90%</strong>
+                            </div>
+
+                            <div class="progress-bar">
+                                <div class="progress-fill fill-90"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-row">
+
+                            <div class="progress-label">
+                                <span>AI Accuracy</span>
+                                <strong>94%</strong>
+                            </div>
+
+                            <div class="progress-bar">
+                                <div class="progress-fill fill-94"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-row">
+
+                            <div class="progress-label">
+                                <span>Knowledge Coverage</span>
+                                <strong>82%</strong>
+                            </div>
+
+                            <div class="progress-bar">
+                                <div class="progress-fill fill-82"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-box">
+
+                        <h3>AI Insights</h3>
+
+                        <div class="insight">
+                            <span>01</span>
+                            12 maintenance anomalies detected
+                        </div>
+
+                        <div class="insight">
+                            <span>02</span>
+                            94% AI diagnosis confidence
+                        </div>
+
+                        <div class="insight">
+                            <span>03</span>
+                            7 alerts require expert review
+                        </div>
+
+                        <div class="insight">
+                            <span>04</span>
+                            All confidential data remains on-premise
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- REPORTS -->
+
+            <section id="reports" class="page">
+
+                <span class="eyebrow">AI GENERATED OUTPUT</span>
+
+                <h2>Reports Center</h2>
+
+                <p class="subtitle">
+                    Access structured AI-generated industrial intelligence reports.
+                </p>
+
+
+                <div class="report-box">
+
+                    <div class="report-header">
+
+                        <div>
+
+                            <span class="report-type">DIAGNOSTIC REPORT</span>
+
+                            <h3>Machine-17 Failure Analysis</h3>
+
+                            <p>
+                                AI-generated maintenance diagnosis
+                            </p>
+
+                        </div>
+
+                        <div class="report-icon">📄</div>
+
+                    </div>
+
+
+                    <div class="report-tags">
+
+                        <span>Machine ID: M-17</span>
+                        <span>Confidence: 89%</span>
+                        <span>Generated: Today</span>
+
+                    </div>
+
+
+                    <div class="report-actions">
+
+                        <button onclick="viewReport('machine')">
+                            View Report
+                        </button>
+
+                        <button class="secondary-btn" onclick="downloadReport('machine')">
+                            Download
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="report-box">
+
+                    <div class="report-header">
+
+                        <div>
+
+                            <span class="report-type">SYSTEM REPORT</span>
+
+                            <h3>Weekly System Health Report</h3>
+
+                            <p>
+                                AI infrastructure and performance analysis
+                            </p>
+
+                        </div>
+
+                        <div class="report-icon">📊</div>
+
+                    </div>
+
+
+                    <div class="report-tags">
+
+                        <span>System Health: 96%</span>
+                        <span>Agents: 4 Active</span>
+                        <span>Generated: Today</span>
+
+                    </div>
+
+
+                    <div class="report-actions">
+
+                        <button onclick="viewReport('system')">
+                            View Report
+                        </button>
+
+                        <button class="secondary-btn" onclick="downloadReport('system')">
+                            Download
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- REPORT MODAL -->
+
+    <div id="report-modal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-modal" onclick="closeModal()">
+                ×
+            </span>
+
+            <div id="modal-title"></div>
+
+            <div id="modal-body"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <span>© 2026 Sovereign AI Workbench</span>
+
+        <span class="footer-status">
+            🔒 Confidential Data Never Leaves Your Infrastructure
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
