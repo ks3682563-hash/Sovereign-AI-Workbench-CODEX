@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sovereign AI Workbench</title>
+
+    <link rel="stylesheet" href="workbench.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">S</div>
+
+            <div>
+                <h2>SOVEREIGN AI</h2>
+                <span>WORKBENCH</span>
+            </div>
+
+        </div>
+
+
+        <div class="menu">
+
+            <button class="menu-item active" onclick="showSection('dashboard', this)">
+                <span>▦</span> Dashboard
+            </button>
+
+            <button class="menu-item" onclick="showSection('agent', this)">
+                <span>✦</span> AI Agent
+            </button>
+
+            <button class="menu-item" onclick="showSection('documents', this)">
+                <span>▤</span> Documents
+            </button>
+
+            <button class="menu-item" onclick="showSection('vision', this)">
+                <span>◉</span> Vision AI
+            </button>
+
+            <button class="menu-item" onclick="showSection('analytics', this)">
+                <span>◈</span> Analytics
+            </button>
+
+            <button class="menu-item" onclick="showSection('reports', this)">
+                <span>▣</span> Reports
+            </button>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+            <small>On-Premise AI Environment</small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 id="pageTitle">Dashboard</h1>
+
+                <p id="pageSubtitle">
+                    Overview of your Sovereign AI environment
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="local-status">
+                    <span class="status-dot"></span>
+                    LOCAL PROCESSING
+                </div>
+
+                <div class="profile">
+                    KS
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="content-section active-section">
+
+            <div class="welcome-banner">
+
+                <div>
+
+                    <span class="small-label">
+                        SOVEREIGN INTELLIGENCE PLATFORM
+                    </span>
+
+                    <h2>
+                        Welcome back to your
+                        <span>AI Workbench</span>
+                    </h2>
+
+                    <p>
+                        Manage AI agents, confidential documents and
+                        multimodal intelligence from one secure environment.
+                    </p>
+
+                </div>
+
+                <div class="welcome-ai">AI</div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">✦</div>
+
+                    <div>
+                        <p>Active Agents</p>
+                        <h2>4</h2>
+                        <span class="positive">● Operational</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">▤</div>
+
+                    <div>
+                        <p>Documents</p>
+                        <h2>328</h2>
+                        <span class="positive">● Knowledge Ready</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">⚠</div>
+
+                    <div>
+                        <p>System Alerts</p>
+                        <h2>7</h2>
+                        <span class="warning-text">● Requires Review</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">◉</div>
+
+                    <div>
+                        <p>AI Server</p>
+                        <h2>Healthy</h2>
+                        <span class="positive">● Running Locally</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Recent Activity</h3>
+                            <p>Latest AI operations</p>
+                        </div>
+
+                        <button class="text-btn">View All</button>
+
+                    </div>
+
+
+                    <div class="activity-list">
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">✦</div>
+
+                            <div>
+                                <h4>Industrial Agent Analysis</h4>
+                                <p>Completed successfully</p>
+                            </div>
+
+                            <span>2 min ago</span>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">▤</div>
+
+                            <div>
+                                <h4>Document Processing</h4>
+                                <p>Maintenance_Report.pdf indexed</p>
+                            </div>
+
+                            <span>12 min ago</span>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">◉</div>
+
+                            <div>
+                                <h4>Vision Analysis</h4>
+                                <p>Image analysis completed</p>
+                            </div>
+
+                            <span>28 min ago</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel sovereignty-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>🛡 Sovereignty Status</h3>
+                            <p>Infrastructure privacy overview</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="sovereignty-list">
+
+                        <div>
+                            <span>AI Processing</span>
+                            <strong class="success">● LOCAL</strong>
+                        </div>
+
+                        <div>
+                            <span>External API</span>
+                            <strong class="success">● DISABLED</strong>
+                        </div>
+
+                        <div>
+                            <span>Data Exposure</span>
+                            <strong class="success">● PROTECTED</strong>
+                        </div>
+
+                        <div>
+                            <span>Infrastructure</span>
+                            <strong class="success">● ON-PREMISE</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="secure-message">
+                        🔒 Data remains under organizational control
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= AI AGENT ================= -->
+
+        <section id="agent" class="content-section">
+
+            <div class="agent-page-header">
+
+                <div>
+
+                    <div class="section-status">
+                        <span class="status-dot"></span>
+                        LOCAL AGENT ONLINE
+                    </div>
+
+                    <h2>Sovereign Industrial Assistant</h2>
+
+                    <p>
+                        Interact with your private AI agent and analyze
+                        confidential industrial information securely.
+                    </p>
+
+                </div>
+
+
+                <button class="clear-btn" onclick="clearChat()">
+                    Clear Conversation
+                </button>
+
+            </div>
+
+
+            <!-- FULL WIDTH AI CHAT -->
+
+            <div class="agent-chat-container">
+
+
+                <div class="agent-info">
+
+                    <div class="agent-avatar">AI</div>
+
+                    <div>
+
+                        <h3>Sovereign AI Agent</h3>
+
+                        <p>
+                            Private multimodal industrial intelligence
+                        </p>
+
+                    </div>
+
+
+                    <span class="processing-badge">
+                        🔒 Processing Locally
+                    </span>
+
+                </div>
+
+
+                <!-- CHAT AREA -->
+
+                <div class="chat-messages" id="chatMessages">
+
+
+                    <div class="message ai-message">
+
+                        <div class="message-avatar">AI</div>
+
+                        <div class="message-content">
+
+                            <p>
+                                Hello! I am your Sovereign Industrial AI Assistant.
+                                I can help analyze confidential documents,
+                                industrial data and visual inputs securely
+                                within your controlled environment.
+                            </p>
+
+                            <span class="message-time">
+                                Secure Local Session
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUGGESTED PROMPTS -->
+
+                    <div class="suggested-prompts">
+
+                        <p>Try asking:</p>
+
+                        <button onclick="usePrompt('Analyze the latest maintenance report')">
+                            Analyze the latest maintenance report
+                        </button>
+
+                        <button onclick="usePrompt('Identify potential industrial risks')">
+                            Identify potential industrial risks
+                        </button>
+
+                        <button onclick="usePrompt('Summarize uploaded confidential documents')">
+                            Summarize uploaded documents
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INPUT -->
+
+                <div class="chat-input-area">
+
+                    <input
+                        type="text"
+                        id="userInput"
+                        placeholder="Ask Sovereign AI anything..."
+                        onkeypress="handleEnter(event)"
+                    >
+
+                    <button class="send-btn" onclick="sendMessage()">
+                        ➤
+                    </button>
+
+                </div>
+
+
+                <div class="chat-footer">
+
+                    <span>🔒 Private AI Session</span>
+
+                    <span>No external data transmission</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DOCUMENTS ================= -->
+
+        <section id="documents" class="content-section">
+
+            <div class="documents-header">
+
+                <div>
+
+                    <span class="small-label">
+                        SECURE KNOWLEDGE BASE
+                    </span>
+
+                    <h2>Document Intelligence</h2>
+
+                    <p>
+                        Upload and manage confidential documents for
+                        secure AI-powered knowledge processing.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="document-stats">
+
+                <div class="doc-stat">
+
+                    <span>Total Documents</span>
+                    <h2>328</h2>
+                    <small>Knowledge Base</small>
+
+                </div>
+
+
+                <div class="doc-stat">
+
+                    <span>Storage Used</span>
+                    <h2>2.4 GB</h2>
+                    <small>Secure Storage</small>
+
+                </div>
+
+
+                <div class="doc-stat">
+
+                    <span>Processed</span>
+                    <h2>96%</h2>
+                    <small>AI Ready</small>
+
+                </div>
+
+            </div>
+
+
+            <!-- UPLOAD BOX -->
+
+            <div class="upload-box" id="uploadBox">
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    multiple
+                    accept=".pdf,.doc,.docx,.txt,.xlsx"
+                    hidden
+                >
+
+
+                <div class="upload-icon">↑</div>
+
+                <h3>Drag & Drop Confidential Files</h3>
+
+                <p>
+                    Upload documents securely into your private
+                    organizational knowledge environment.
+                </p>
+
+                <p class="supported-files">
+                    PDF • DOCX • XLSX • TXT
+                </p>
+
+
+                <button
+                    class="browse-btn"
+                    onclick="document.getElementById('fileInput').click()"
+                >
+                    Browse Files
+                </button>
+
+            </div>
+
+
+            <!-- PRIVACY NOTE -->
+
+            <div class="privacy-note">
+
+                <span>🔒</span>
+
+                <p>
+                    <strong>Privacy Assured:</strong>
+                    Your documents remain secure within your controlled
+                    infrastructure and are not unnecessarily exposed to
+                    external services.
+                </p>
+
+            </div>
+
+
+            <!-- KNOWLEDGE BASE -->
+
+            <div class="documents-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>Knowledge Base</h3>
+
+                        <p>
+                            Secure documents available for AI processing
+                        </p>
+
+                    </div>
+
+
+                    <button class="text-btn">
+                        Manage Files
+                    </button>
+
+                </div>
+
+
+                <div class="document-list" id="documentList">
+
+
+                    <div class="document-item">
+
+                        <div class="document-left">
+
+                            <div class="file-icon pdf">PDF</div>
+
+                            <div>
+
+                                <h4>Maintenance_Report.pdf</h4>
+
+                                <p>2.4 MB • Processed</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="document-right">
+
+                            <span class="processed">
+                                ✓ Processed
+                            </span>
+
+                            <button class="more-btn">⋮</button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="document-item">
+
+                        <div class="document-left">
+
+                            <div class="file-icon excel">XLS</div>
+
+                            <div>
+
+                                <h4>Production_Data.xlsx</h4>
+
+                                <p>1.8 MB • Ready</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="document-right">
+
+                            <span class="ready">
+                                ✓ Ready
+                            </span>
+
+                            <button class="more-btn">⋮</button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="document-item">
+
+                        <div class="document-left">
+
+                            <div class="file-icon pdf">PDF</div>
+
+                            <div>
+
+                                <h4>Industrial_Safety_Manual.pdf</h4>
+
+                                <p>5.1 MB • Processing</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="document-right">
+
+                            <span class="processing">
+                                ◉ Processing
+                            </span>
+
+                            <button class="more-btn">⋮</button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= VISION AI ================= -->
+
+        <section id="vision" class="content-section">
+
+            <div class="placeholder-page">
+
+                <div class="placeholder-icon">◉</div>
+
+                <h2>Vision Intelligence</h2>
+
+                <p>
+                    Upload industrial images for secure multimodal AI analysis.
+                </p>
+
+
+                <div class="vision-upload">
+
+                    <div class="upload-icon">◉</div>
+
+                    <h3>Upload Industrial Image</h3>
+
+                    <p>PNG • JPG • JPEG</p>
+
+                    <button class="browse-btn">
+                        Select Image
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ANALYTICS ================= -->
+
+        <section id="analytics" class="content-section">
+
+            <div class="placeholder-page">
+
+                <div class="placeholder-icon">◈</div>
+
+                <h2>AI Analytics</h2>
+
+                <p>
+                    Monitor AI operations and industrial intelligence insights.
+                </p>
+
+
+                <div class="analytics-placeholder">
+
+
+                    <div class="chart-card">
+
+                        <h3>AI Processing Activity</h3>
+
+                        <div class="fake-chart">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-card">
+
+                        <h3>System Performance</h3>
+
+                        <div class="performance-circle">
+                            94%
+                        </div>
+
+                        <p>Operational Efficiency</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REPORTS ================= -->
+
+        <section id="reports" class="content-section">
+
+            <div class="placeholder-page reports-page">
+
+                <div class="placeholder-icon">▣</div>
+
+                <h2>AI Reports</h2>
+
+                <p>
+                    Generate and manage intelligent industrial reports.
+                </p>
+
+
+                <div class="reports-list">
+
+
+                    <div class="report-item">
+
+                        <div>
+
+                            <h3>Industrial Analysis Report</h3>
+
+                            <p>Generated Today</p>
+
+                        </div>
+
+
+                        <button class="download-btn">
+                            Download
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="report-item">
+
+                        <div>
+
+                            <h3>Maintenance Intelligence Report</h3>
+
+                            <p>Generated Yesterday</p>
+
+                        </div>
+
+
+                        <button class="download-btn">
+                            Download
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="workbench.js"></script>
+
+</body>
+
+</html>
