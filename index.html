@@ -5,826 +5,1047 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sovereign AI Workbench</title>
+    <title>CivicAI | Smart Grievance Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- BACKGROUND EFFECT -->
-    <div class="background-grid"></div>
+    <!-- NAVBAR -->
 
-    <!-- HEADER -->
-    <header>
+    <nav class="navbar">
 
-        <div class="brand-section">
-            <div class="logo-box">AI</div>
+        <a href="index.html" class="logo">
 
-            <div>
-                <h1>SOVEREIGN AI WORKBENCH</h1>
-                <p>Private • Secure • On-Premise Intelligence</p>
+            <div class="logo-icon">
+                <i data-lucide="building-2"></i>
             </div>
+
+            <span>Civic<span class="blue-text">AI</span></span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#departments">Departments</a>
+            <a href="#complaint">File Complaint</a>
+            <a href="#dashboard">Dashboard</a>
+
         </div>
 
 
-        <div class="header-status">
+        <div class="nav-actions">
 
-            <div class="demo-badge">
-                DEMO MODE
+            <!-- LANGUAGE -->
+
+            <div class="language-box">
+
+                <i data-lucide="languages"></i>
+
+                <select id="languageSelect">
+
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="mr">मराठी</option>
+
+                </select>
+
             </div>
 
-            <div class="live-indicator">
-                <span class="live-dot"></span>
-                SYSTEM ONLINE
+
+            <!-- NOT LOGGED IN -->
+
+            <div class="auth-actions" id="guestActions">
+
+                <a href="login.html" class="login-btn">
+                    <i data-lucide="log-in"></i>
+                    Login
+                </a>
+
+                <a href="signup.html" class="signup-btn">
+                    Sign Up
+                </a>
+
+            </div>
+
+
+            <!-- LOGGED IN -->
+
+            <div class="user-actions" id="userActions" style="display: none;">
+
+                <div class="user-profile">
+
+                    <i data-lucide="circle-user-round"></i>
+
+                    <span id="navUserName">User</span>
+
+                </div>
+
+                <button class="logout-btn" onclick="logoutUser()">
+
+                    <i data-lucide="log-out"></i>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+
+            <button class="nav-btn" onclick="handleComplaintButton()">
+
+                <i data-lucide="plus-circle"></i>
+
+                New Complaint
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+
+                <span class="pulse"></span>
+
+                AI-Powered Public Service Intelligence
+
+            </div>
+
+
+            <h1>
+
+                Smarter Grievances.<br>
+
+                <span class="gradient-text">
+                    Faster Public Action.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                An intelligent grievance management system that automatically
+                understands citizen complaints, detects urgency, identifies
+                duplicate issues and routes them to the right department.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn"
+                    onclick="handleComplaintButton()">
+
+                    <i data-lucide="file-plus-2"></i>
+
+                    Start Complaint
+
+                </button>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+
+                    <h3>AI</h3>
+
+                    <p>Smart Routing</p>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <h3>24/7</h3>
+
+                    <p>Issue Analysis</p>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <h3>100%</h3>
+
+                    <p>Transparent Priority</p>
+
+                </div>
+
             </div>
 
         </div>
 
-    </header>
 
+        <!-- AI CARD -->
 
-    <div class="app-container">
+        <div class="hero-visual">
 
-        <!-- SIDEBAR -->
-        <aside>
+            <div class="ai-card">
 
-            <div class="sidebar-title">
-                CONTROL CENTER
-            </div>
+                <div class="ai-card-header">
 
-            <nav>
+                    <div class="ai-status">
 
-                <div class="nav-item active-nav" onclick="showPage('dashboard')">
-                    <span class="nav-icon">▣</span>
-                    Dashboard
-                </div>
+                        <span class="status-dot"></span>
 
-                <div class="nav-item" onclick="showPage('agent')">
-                    <span class="nav-icon">◉</span>
-                    AI Agent
-                </div>
-
-                <div class="nav-item" onclick="showPage('documents')">
-                    <span class="nav-icon">▤</span>
-                    Documents
-                </div>
-
-                <div class="nav-item" onclick="showPage('vision')">
-                    <span class="nav-icon">◈</span>
-                    Vision AI
-                </div>
-
-                <div class="nav-item" onclick="showPage('activity')">
-                    <span class="nav-icon">⚡</span>
-                    Agent Activity
-                </div>
-
-                <div class="nav-item" onclick="showPage('analytics')">
-                    <span class="nav-icon">◫</span>
-                    Analytics
-                </div>
-
-                <div class="nav-item" onclick="showPage('reports')">
-                    <span class="nav-icon">▧</span>
-                    Reports
-                </div>
-
-            </nav>
-
-
-            <div class="sidebar-bottom">
-
-                <div class="security-card">
-
-                    <div class="security-icon">🔒</div>
-
-                    <div>
-                        <strong>Data Protected</strong>
-                        <p>On-Premise Mode</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </aside>
-
-
-        <!-- MAIN CONTENT -->
-        <main>
-
-
-            <!-- DASHBOARD -->
-            <section id="dashboard" class="page active-page">
-
-                <div class="page-heading">
-
-                    <div>
-                        <span class="eyebrow">OVERVIEW</span>
-
-                        <h2>System Command Center</h2>
-
-                        <p class="subtitle">
-                            Monitor your sovereign AI infrastructure in real time.
-                        </p>
-                    </div>
-
-                    <div class="time-box">
-                        <span>AI INFRASTRUCTURE</span>
-                        <strong>OPERATIONAL</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- STAT CARDS -->
-
-                <div class="stats-container">
-
-                    <div class="stat-card">
-
-                        <div class="card-top">
-                            <div class="stat-icon">🤖</div>
-                            <span class="status-badge active">ACTIVE</span>
-                        </div>
-
-                        <p>Active Agents</p>
-
-                        <h3 class="number">4</h3>
-
-                        <small>Autonomous workflows running</small>
+                        AI Analysis Engine
 
                     </div>
 
-
-                    <div class="stat-card">
-
-                        <div class="card-top">
-                            <div class="stat-icon">📄</div>
-                            <span class="status-badge secured">SECURED</span>
-                        </div>
-
-                        <p>Documents</p>
-
-                        <h3 class="number">328</h3>
-
-                        <small>Private knowledge base indexed</small>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div class="card-top">
-                            <div class="stat-icon">⚠</div>
-                            <span class="status-badge warning-badge">REVIEW</span>
-                        </div>
-
-                        <p>Alerts</p>
-
-                        <h3 class="number">7</h3>
-
-                        <small>Items requiring attention</small>
-
-                    </div>
+                    <span class="live">
+                        LIVE
+                    </span>
 
                 </div>
 
 
-                <!-- SYSTEM HEALTH -->
+                <div class="complaint-preview">
 
-                <div class="dashboard-grid">
+                    <div class="preview-icon">
 
-                    <div class="health-section">
-
-                        <div class="section-header">
-
-                            <div>
-                                <span class="eyebrow">INFRASTRUCTURE</span>
-                                <h3>System Health</h3>
-                            </div>
-
-                            <span class="overall-health">
-                                ● 96% Healthy
-                            </span>
-
-                        </div>
-
-
-                        <div class="health-item">
-                            <div>
-                                <span class="health-dot"></span>
-                                AI Server
-                            </div>
-
-                            <span class="healthy">Healthy</span>
-                        </div>
-
-
-                        <div class="health-item">
-                            <div>
-                                <span class="health-dot"></span>
-                                Knowledge Base
-                            </div>
-
-                            <span class="healthy">Connected</span>
-                        </div>
-
-
-                        <div class="health-item">
-                            <div>
-                                <span class="health-dot"></span>
-                                Vision Model
-                            </div>
-
-                            <span class="healthy">Active</span>
-                        </div>
-
-
-                        <div class="health-item">
-                            <div>
-                                <span class="health-dot"></span>
-                                Security Layer
-                            </div>
-
-                            <span class="healthy">Protected</span>
-                        </div>
+                        <i data-lucide="message-square-warning"></i>
 
                     </div>
-
-
-                    <!-- QUICK INSIGHT -->
-
-                    <div class="quick-insight">
-
-                        <span class="eyebrow">AI INSIGHT</span>
-
-                        <h3>Machine-17</h3>
-
-                        <div class="machine-status">
-
-                            <div class="machine-circle">
-                                89%
-                            </div>
-
-                            <div>
-                                <p>Diagnosis Confidence</p>
-                                <strong>Bearing degradation detected</strong>
-                            </div>
-
-                        </div>
-
-                        <button onclick="showPage('agent')">
-                            Open AI Analysis →
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- AI AGENT -->
-
-            <section id="agent" class="page">
-
-                <div class="page-heading">
 
                     <div>
 
-                        <span class="eyebrow">PRIVATE INTELLIGENCE</span>
+                        <small>NEW GRIEVANCE</small>
 
-                        <h2>AI Agent Workspace</h2>
-
-                        <p class="subtitle">
-                            Query confidential industrial data using your sovereign AI.
+                        <p>
+                            No water supply in Manpada for 3 days...
                         </p>
 
                     </div>
 
-                    <div class="agent-status">
-                        <span class="live-dot"></span>
-                        AI READY
-                    </div>
+                </div>
+
+
+                <div class="analysis-row">
+
+                    <span>Category</span>
+
+                    <strong>
+                        💧 Water Supply
+                    </strong>
 
                 </div>
 
 
-                <div class="chat-container">
+                <div class="analysis-row">
 
-                    <div class="chat-header">
+                    <span>Priority</span>
 
-                        <div class="chat-ai">
+                    <strong class="critical">
+                        ● Critical
+                    </strong>
 
-                            <div class="ai-avatar">AI</div>
-
-                            <div>
-                                <strong>Sovereign Industrial Agent</strong>
-                                <p>Private model • On-Premise</p>
-                            </div>
-
-                        </div>
-
-                        <span class="secure-chat">🔒 Secure Session</span>
-
-                    </div>
+                </div>
 
 
-                    <div id="chat-box">
+                <div class="analysis-row">
 
-                        <div class="message ai-message">
+                    <span>Department</span>
 
-                            <strong>AI Assistant</strong>
+                    <strong>
+                        Water Department
+                    </strong>
 
-                            <p>
-                                Hello! I am your private industrial AI assistant.
-                                I can analyze maintenance records, documents,
-                                sensor information and inspection data.
-                            </p>
+                </div>
 
-                        </div>
+
+                <div class="ai-processing">
+
+                    <div class="processing-text">
+
+                        <span>AI Confidence</span>
+
+                        <strong>96%</strong>
 
                     </div>
 
 
-                    <div class="chat-input-area">
+                    <div class="progress-bar">
 
-                        <input
-                            type="text"
-                            id="user-input"
-                            placeholder="Ask about machines, documents or industrial issues..."
-                        >
-
-                        <button onclick="sendMessage()">
-                            Send →
-                        </button>
+                        <div class="progress-fill"></div>
 
                     </div>
 
                 </div>
 
-            </section>
+            </div>
+
+        </div>
+
+    </section>
 
 
-            <!-- DOCUMENTS -->
+    <!-- ABOUT -->
 
-            <section id="documents" class="page">
+    <section class="about-section" id="about">
 
-                <span class="eyebrow">KNOWLEDGE BASE</span>
+        <div class="section-heading">
 
-                <h2>Confidential Documents</h2>
+            <div class="section-tag">
+                ABOUT CIVICAI
+            </div>
 
-                <p class="subtitle">
-                    Securely upload and index documents inside your private AI environment.
+            <h2>
+
+                Technology that makes
+                <span>public services smarter.</span>
+
+            </h2>
+
+            <p>
+
+                CivicAI is an AI-powered citizen grievance intelligence platform
+                designed to help citizens report problems and help authorities
+                prioritize and resolve them efficiently.
+
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    <i data-lucide="brain"></i>
+                </div>
+
+                <h3>AI Classification</h3>
+
+                <p>
+                    Automatically understands and categorizes citizen complaints.
                 </p>
 
+            </div>
 
-                <div class="upload-container">
 
-                    <div class="upload-icon">↑</div>
+            <div class="about-card">
 
-                    <h3>Upload Confidential Document</h3>
-
-                    <p>
-                        Files remain inside your sovereign infrastructure.
-                    </p>
-
-                    <input
-                        type="file"
-                        id="document-file"
-                        onchange="uploadDocument()"
-                    >
-
-                    <p id="document-status">
-                        Ready for secure processing
-                    </p>
-
+                <div class="about-icon">
+                    <i data-lucide="triangle-alert"></i>
                 </div>
 
+                <h3>Priority Detection</h3>
 
-                <div class="document-list">
-
-                    <div class="list-heading">
-
-                        <h3>Indexed Knowledge Base</h3>
-
-                        <span>328 DOCUMENTS</span>
-
-                    </div>
-
-
-                    <div class="document-item">
-
-                        <div>
-                            <span class="doc-icon">📄</span>
-                            Machine-17 Maintenance Manual
-                        </div>
-
-                        <span class="processed">● Processed</span>
-
-                    </div>
-
-
-                    <div class="document-item">
-
-                        <div>
-                            <span class="doc-icon">📄</span>
-                            Industrial Safety Guidelines
-                        </div>
-
-                        <span class="processed">● Processed</span>
-
-                    </div>
-
-
-                    <div class="document-item">
-
-                        <div>
-                            <span class="doc-icon">📄</span>
-                            Machine Sensor History
-                        </div>
-
-                        <span class="processed">● Processed</span>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- VISION AI -->
-
-            <section id="vision" class="page">
-
-                <span class="eyebrow">MULTIMODAL INTELLIGENCE</span>
-
-                <h2>Vision AI Inspection</h2>
-
-                <p class="subtitle">
-                    Analyze industrial equipment images using private vision models.
+                <p>
+                    Detects urgent issues that require immediate public action.
                 </p>
 
+            </div>
 
-                <div class="vision-container">
 
-                    <div class="vision-upload">
+            <div class="about-card">
 
-                        <input
-                            type="file"
-                            id="image-upload"
-                            accept="image/*"
-                            onchange="previewImage()"
-                        >
+                <div class="about-icon">
+                    <i data-lucide="copy-check"></i>
+                </div>
 
-                        <div id="image-preview-container">
+                <h3>Duplicate Detection</h3>
 
-                            <div class="vision-placeholder">
+                <p>
+                    Identifies similar complaints to avoid repeated processing.
+                </p>
 
-                                <div class="vision-icon">◈</div>
+            </div>
 
-                                <h3>Upload Inspection Image</h3>
 
-                                <p>
-                                    PNG, JPG or industrial inspection imagery
-                                </p>
+            <div class="about-card">
 
-                            </div>
+                <div class="about-icon">
+                    <i data-lucide="send"></i>
+                </div>
 
-                            <img
-                                id="image-preview"
-                                src=""
-                                alt="Uploaded Preview"
-                            >
+                <h3>Smart Routing</h3>
+
+                <p>
+                    Routes grievances to the responsible department intelligently.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DEPARTMENTS -->
+
+    <section class="departments" id="departments">
+
+        <div class="section-heading">
+
+            <div class="section-tag">
+                DEPARTMENT INTELLIGENCE
+            </div>
+
+            <h2>
+
+                Automatically routed to the
+                <span>right department.</span>
+
+            </h2>
+
+            <p>
+
+                CivicAI understands the nature of each grievance and connects
+                it with the responsible public service department.
+
+            </p>
+
+        </div>
+
+
+        <div class="department-grid">
+
+            <div class="department-card">
+
+                <div class="dept-icon water">
+                    <i data-lucide="droplets"></i>
+                </div>
+
+                <h3>Water Supply</h3>
+
+                <p>
+                    Water shortage, pipeline leakage and supply disruption.
+                </p>
+
+                <div class="dept-footer">
+
+                    <span>128 Active Issues</span>
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-card">
+
+                <div class="dept-icon roads">
+                    <i data-lucide="construction"></i>
+                </div>
+
+                <h3>Roads & Infrastructure</h3>
+
+                <p>
+                    Potholes, damaged roads and unsafe infrastructure.
+                </p>
+
+                <div class="dept-footer">
+
+                    <span>86 Active Issues</span>
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-card">
+
+                <div class="dept-icon waste">
+                    <i data-lucide="trash-2"></i>
+                </div>
+
+                <h3>Waste Management</h3>
+
+                <p>
+                    Garbage collection, overflowing bins and sanitation issues.
+                </p>
+
+                <div class="dept-footer">
+
+                    <span>104 Active Issues</span>
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-card">
+
+                <div class="dept-icon electricity">
+                    <i data-lucide="zap"></i>
+                </div>
+
+                <h3>Electricity</h3>
+
+                <p>
+                    Streetlight failures and electrical infrastructure problems.
+                </p>
+
+                <div class="dept-footer">
+
+                    <span>72 Active Issues</span>
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-card">
+
+                <div class="dept-icon drainage">
+                    <i data-lucide="waves"></i>
+                </div>
+
+                <h3>Drainage & Sanitation</h3>
+
+                <p>
+                    Blocked drains, sewage overflow and waterlogging.
+                </p>
+
+                <div class="dept-footer">
+
+                    <span>63 Active Issues</span>
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-card">
+
+                <div class="dept-icon health">
+                    <i data-lucide="heart-pulse"></i>
+                </div>
+
+                <h3>Public Health</h3>
+
+                <p>
+                    Public health risks and community healthcare concerns.
+                </p>
+
+                <div class="dept-footer">
+
+                    <span>34 Active Issues</span>
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPLAINT -->
+
+    <section class="complaint-section" id="complaint">
+
+        <div class="section-heading">
+
+            <div class="section-tag">
+                SMART GRIEVANCE REGISTRATION
+            </div>
+
+            <h2>
+
+                Tell us what
+                <span>needs attention.</span>
+
+            </h2>
+
+            <p>
+
+                Login is required before submitting a complaint.
+
+            </p>
+
+        </div>
+
+
+        <div class="complaint-intro-card">
+
+            <div class="intro-icon">
+
+                <i data-lucide="bot"></i>
+
+            </div>
+
+            <h3>Smart AI Complaint Form</h3>
+
+            <p>
+
+                Describe your issue and our AI will classify, prioritize
+                and route it to the correct department.
+
+            </p>
+
+            <button class="start-complaint-btn"
+                onclick="handleComplaintButton()">
+
+                <i data-lucide="file-plus-2"></i>
+
+                Start Complaint
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard-section" id="dashboard">
+
+        <div class="section-heading">
+
+            <div class="section-tag">
+                OFFICER COMMAND CENTER
+            </div>
+
+            <h2>
+
+                Public issues at a
+                <span>glance.</span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="dashboard-preview">
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <i data-lucide="file-text"></i>
+
+                    <span>Total Complaints</span>
+
+                </div>
+
+                <h2>1,248</h2>
+
+                <p>↑ 12% this week</p>
+
+            </div>
+
+
+            <div class="stat-card critical-stat">
+
+                <div class="stat-top">
+
+                    <i data-lucide="triangle-alert"></i>
+
+                    <span>Critical Issues</span>
+
+                </div>
+
+                <h2>87</h2>
+
+                <p>Requires immediate action</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <i data-lucide="copy"></i>
+
+                    <span>Duplicates Detected</span>
+
+                </div>
+
+                <h2>312</h2>
+
+                <p>AI grouped similar reports</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <i data-lucide="circle-check"></i>
+
+                    <span>Resolved</span>
+
+                </div>
+
+                <h2>849</h2>
+
+                <p>68% resolution rate</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPLAINT MODAL -->
+
+    <div class="complaint-modal" id="complaintModal">
+
+        <div class="modal-box">
+
+            <button class="close-modal"
+                onclick="closeComplaintForm()">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+
+            <div class="modal-header">
+
+                <h2>Register a Complaint</h2>
+
+                <p>
+                    Provide details and CivicAI will intelligently analyze your grievance.
+                </p>
+
+            </div>
+
+
+            <form id="complaintForm">
+
+                <div class="form-section-title">
+
+                    <i data-lucide="user"></i>
+
+                    Personal Information
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input type="text"
+                            id="fullName"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input type="email"
+                            id="email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Phone Number</label>
+
+                        <input type="tel"
+                            id="phone"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Pincode</label>
+
+                        <input type="text"
+                            id="pincode"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section-title">
+
+                    <i data-lucide="map-pin"></i>
+
+                    Complaint Details
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Location</label>
+
+                    <input type="text"
+                        id="location"
+                        placeholder="Enter area or locality"
+                        required>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Category</label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Water Supply">
+                                Water Supply
+                            </option>
+
+                            <option value="Roads & Infrastructure">
+                                Roads & Infrastructure
+                            </option>
+
+                            <option value="Waste Management">
+                                Waste Management
+                            </option>
+
+                            <option value="Electricity">
+                                Electricity
+                            </option>
+
+                            <option value="Drainage & Sanitation">
+                                Drainage & Sanitation
+                            </option>
+
+                            <option value="Public Health">
+                                Public Health
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Urgency</label>
+
+                        <select id="urgency" required>
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                            <option value="Critical">
+                                Critical
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Describe Your Complaint</label>
+
+                    <textarea id="complaintText"
+                        placeholder="Explain the problem in detail..."
+                        required></textarea>
+
+                </div>
+
+
+                <button type="submit"
+                    class="analyze-btn">
+
+                    <i data-lucide="brain"></i>
+
+                    Analyze with AI
+
+                </button>
+
+
+                <!-- AI RESULT -->
+
+                <div class="ai-result"
+                    id="aiResult">
+
+                    <div class="result-title">
+
+                        <i data-lucide="sparkles"></i>
+
+                        AI Analysis Result
+
+                    </div>
+
+
+                    <div class="result-grid">
+
+                        <div class="result-item">
+
+                            <span>Detected Category</span>
+
+                            <strong id="resultCategory">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-item">
+
+                            <span>Priority</span>
+
+                            <strong id="resultPriority">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-item">
+
+                            <span>Assigned Department</span>
+
+                            <strong id="resultDepartment">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-item">
+
+                            <span>AI Confidence</span>
+
+                            <strong>
+                                96%
+                            </strong>
 
                         </div>
 
                     </div>
 
 
-                    <button class="analyze-btn" onclick="analyzeImage()">
-                        ✦ Analyze with Vision AI
+                    <button type="button"
+                        class="submit-complaint-btn"
+                        onclick="submitComplaint()">
+
+                        <i data-lucide="send"></i>
+
+                        Submit Complaint
+
                     </button>
 
-
-                    <div id="vision-result"></div>
-
                 </div>
 
-            </section>
+            </form>
 
-
-            <!-- AGENT ACTIVITY -->
-
-            <section id="activity" class="page">
-
-                <span class="eyebrow">TRANSPARENT AI WORKFLOW</span>
-
-                <h2>Agent Activity</h2>
-
-                <p class="subtitle">
-                    Track how autonomous agents process and validate each request.
-                </p>
-
-
-                <div class="activity-container">
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot completed">✓</div>
-
-                        <div class="timeline-content">
-                            <strong>Received User Request</strong>
-                            <p>Industrial analysis request initialized</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot completed">✓</div>
-
-                        <div class="timeline-content">
-                            <strong>Retrieved Knowledge Base</strong>
-                            <p>Maintenance manual and machine history retrieved</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot completed">✓</div>
-
-                        <div class="timeline-content">
-                            <strong>Analyzed Inspection Data</strong>
-                            <p>Vision and sensor information processed</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot completed">✓</div>
-
-                        <div class="timeline-content">
-                            <strong>Compared Historical Patterns</strong>
-                            <p>Anomaly detection completed</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot completed">✓</div>
-
-                        <div class="timeline-content">
-                            <strong>Generated AI Diagnosis</strong>
-                            <p>Probable failure cause identified</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot warning-dot">!</div>
-
-                        <div class="timeline-content warning-content">
-                            <strong>Human Approval Required</strong>
-                            <p>Final operational decision requires expert review</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ANALYTICS -->
-
-            <section id="analytics" class="page">
-
-                <span class="eyebrow">PERFORMANCE INTELLIGENCE</span>
-
-                <h2>Industrial Analytics</h2>
-
-                <p class="subtitle">
-                    AI-powered insights from your sovereign infrastructure.
-                </p>
-
-
-                <div class="analytics-grid">
-
-                    <div class="analytics-box">
-
-                        <h3>System Performance</h3>
-
-
-                        <div class="progress-row">
-
-                            <div class="progress-label">
-                                <span>Machine Health</span>
-                                <strong>90%</strong>
-                            </div>
-
-                            <div class="progress-bar">
-                                <div class="progress-fill fill-90"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="progress-row">
-
-                            <div class="progress-label">
-                                <span>AI Accuracy</span>
-                                <strong>94%</strong>
-                            </div>
-
-                            <div class="progress-bar">
-                                <div class="progress-fill fill-94"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="progress-row">
-
-                            <div class="progress-label">
-                                <span>Knowledge Coverage</span>
-                                <strong>82%</strong>
-                            </div>
-
-                            <div class="progress-bar">
-                                <div class="progress-fill fill-82"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="analytics-box">
-
-                        <h3>AI Insights</h3>
-
-                        <div class="insight">
-                            <span>01</span>
-                            12 maintenance anomalies detected
-                        </div>
-
-                        <div class="insight">
-                            <span>02</span>
-                            94% AI diagnosis confidence
-                        </div>
-
-                        <div class="insight">
-                            <span>03</span>
-                            7 alerts require expert review
-                        </div>
-
-                        <div class="insight">
-                            <span>04</span>
-                            All confidential data remains on-premise
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- REPORTS -->
-
-            <section id="reports" class="page">
-
-                <span class="eyebrow">AI GENERATED OUTPUT</span>
-
-                <h2>Reports Center</h2>
-
-                <p class="subtitle">
-                    Access structured AI-generated industrial intelligence reports.
-                </p>
-
-
-                <div class="report-box">
-
-                    <div class="report-header">
-
-                        <div>
-
-                            <span class="report-type">DIAGNOSTIC REPORT</span>
-
-                            <h3>Machine-17 Failure Analysis</h3>
-
-                            <p>
-                                AI-generated maintenance diagnosis
-                            </p>
-
-                        </div>
-
-                        <div class="report-icon">📄</div>
-
-                    </div>
-
-
-                    <div class="report-tags">
-
-                        <span>Machine ID: M-17</span>
-                        <span>Confidence: 89%</span>
-                        <span>Generated: Today</span>
-
-                    </div>
-
-
-                    <div class="report-actions">
-
-                        <button onclick="viewReport('machine')">
-                            View Report
-                        </button>
-
-                        <button class="secondary-btn" onclick="downloadReport('machine')">
-                            Download
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="report-box">
-
-                    <div class="report-header">
-
-                        <div>
-
-                            <span class="report-type">SYSTEM REPORT</span>
-
-                            <h3>Weekly System Health Report</h3>
-
-                            <p>
-                                AI infrastructure and performance analysis
-                            </p>
-
-                        </div>
-
-                        <div class="report-icon">📊</div>
-
-                    </div>
-
-
-                    <div class="report-tags">
-
-                        <span>System Health: 96%</span>
-                        <span>Agents: 4 Active</span>
-                        <span>Generated: Today</span>
-
-                    </div>
-
-
-                    <div class="report-actions">
-
-                        <button onclick="viewReport('system')">
-                            View Report
-                        </button>
-
-                        <button class="secondary-btn" onclick="downloadReport('system')">
-                            Download
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </main>
+        </div>
 
     </div>
 
 
-    <!-- REPORT MODAL -->
+    <!-- LOGIN REQUIRED MODAL -->
 
-    <div id="report-modal" class="modal">
+    <div class="login-required-modal"
+        id="loginRequiredModal">
 
-        <div class="modal-content">
+        <div class="login-required-box">
 
-            <span class="close-modal" onclick="closeModal()">
-                ×
-            </span>
+            <div class="login-required-icon">
 
-            <div id="modal-title"></div>
+                <i data-lucide="lock-keyhole"></i>
 
-            <div id="modal-body"></div>
+            </div>
+
+            <h2>Login Required</h2>
+
+            <p>
+
+                You need to login or create an account before submitting
+                a complaint.
+
+            </p>
+
+
+            <div class="login-required-buttons">
+
+                <a href="login.html"
+                    class="go-login-btn">
+
+                    <i data-lucide="log-in"></i>
+
+                    Login
+
+                </a>
+
+
+                <a href="signup.html"
+                    class="go-signup-btn">
+
+                    Sign Up
+
+                </a>
+
+            </div>
+
+
+            <button class="cancel-login-btn"
+                onclick="closeLoginRequired()">
+
+                Cancel
+
+            </button>
 
         </div>
 
@@ -835,16 +1056,36 @@
 
     <footer>
 
-        <span>© 2026 Sovereign AI Workbench</span>
+        <div class="footer-logo">
 
-        <span class="footer-status">
-            🔒 Confidential Data Never Leaves Your Infrastructure
-        </span>
+            <div class="logo-icon">
+
+                <i data-lucide="building-2"></i>
+
+            </div>
+
+            <span>
+                Civic<span class="blue-text">AI</span>
+            </span>
+
+        </div>
+
+        <p>
+            AI-Powered Citizen Grievance Intelligence System
+        </p>
+
+        <p class="footer-small">
+            Hackathon Prototype • Smart India Innovation
+        </p>
 
     </footer>
 
 
     <script src="script.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
 
 </body>
 

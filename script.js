@@ -1,320 +1,528 @@
-/* =========================
-   PAGE NAVIGATION
-========================= */
+/* =====================================
+   CIVICAI MAIN JAVASCRIPT
+===================================== */
 
-function showPage(pageName) {
+document.addEventListener("DOMContentLoaded", function () {
 
-    const pages = document.querySelectorAll(".page");
+    checkLoginStatus();
 
-    pages.forEach(page => {
-        page.classList.remove("active-page");
-    });
+    setupLoginForm();
 
+    setupSignupForm();
 
-    const selectedPage = document.getElementById(pageName);
+    setupComplaintForm();
 
-    if (selectedPage) {
-        selectedPage.classList.add("active-page");
+    autoFillUserDetails();
+
+    setupLanguage();
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
     }
-
-
-    const navItems = document.querySelectorAll(".nav-item");
-
-    navItems.forEach(item => {
-
-        item.classList.remove("active-nav");
-
-        if (
-            item.getAttribute("onclick") ===
-            `showPage('${pageName}')`
-        ) {
-            item.classList.add("active-nav");
-        }
-
-    });
-
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-function showToast(message) {
-
-    let toast = document.getElementById("toast");
-
-    if (!toast) {
-
-        toast = document.createElement("div");
-        toast.id = "toast";
-
-        document.body.appendChild(toast);
-    }
-
-    toast.innerText = message;
-
-    toast.classList.add("show-toast");
-
-
-    setTimeout(() => {
-
-        toast.classList.remove("show-toast");
-
-    }, 2500);
-
-}
-
-
-/* =========================
-   AI CHAT
-========================= */
-
-function sendMessage() {
-
-    const input =
-        document.getElementById("user-input");
-
-    const message =
-        input.value.trim();
-
-
-    if (message === "") {
-
-        showToast("Please enter a question");
-
-        return;
-
-    }
-
-
-    const chatBox =
-        document.getElementById("chat-box");
-
-
-    const userMessage =
-        document.createElement("div");
-
-
-    userMessage.className =
-        "message user-message";
-
-
-    userMessage.innerHTML = `
-        <strong>You</strong>
-        <p>${message}</p>
-    `;
-
-
-    chatBox.appendChild(userMessage);
-
-
-    input.value = "";
-
-
-    const thinkingMessage =
-        document.createElement("div");
-
-
-    thinkingMessage.className =
-        "message ai-message";
-
-
-    thinkingMessage.innerHTML = `
-        <strong>AI Assistant</strong>
-        <p>⚡ Analyzing confidential industrial knowledge base...</p>
-    `;
-
-
-    chatBox.appendChild(thinkingMessage);
-
-
-    chatBox.scrollTop =
-        chatBox.scrollHeight;
-
-
-    setTimeout(() => {
-
-        thinkingMessage.innerHTML = `
-            <strong>AI Assistant</strong>
-
-            <p>
-                Analysis complete.
-            </p>
-
-            <p>
-                <strong>Probable Cause:</strong>
-                Bearing degradation detected in Machine-17.
-            </p>
-
-            <p>
-                <strong>Confidence:</strong>
-                89%
-            </p>
-
-            <p>
-                <strong>Recommended Action:</strong>
-                Schedule predictive maintenance and inspect
-                the bearing assembly.
-            </p>
-
-            <p>
-                🔒 Analysis performed inside the sovereign
-                on-premise AI environment.
-            </p>
-        `;
-
-
-        chatBox.scrollTop =
-            chatBox.scrollHeight;
-
-
-        showToast("AI analysis completed");
-
-    }, 1500);
-
-}
-
-
-/* ENTER KEY */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const input =
-        document.getElementById("user-input");
-
-
-    input.addEventListener("keypress", function(event) {
-
-        if (event.key === "Enter") {
-            sendMessage();
-        }
-
-    });
 
 });
 
 
-/* =========================
-   DOCUMENT UPLOAD
-========================= */
+/* =====================================
+   LOGIN STATUS
+===================================== */
 
-function uploadDocument() {
+function checkLoginStatus() {
 
-    const fileInput =
-        document.getElementById("document-file");
+    const loggedIn =
+        localStorage.getItem("civicLoggedIn");
 
+    const userName =
+        localStorage.getItem("civicUserName");
 
-    const status =
-        document.getElementById("document-status");
+    const guestActions =
+        document.getElementById("guestActions");
 
+    const userActions =
+        document.getElementById("userActions");
 
-    if (fileInput.files.length > 0) {
-
-        const file =
-            fileInput.files[0];
-
-
-        status.innerHTML =
-            `⚡ Processing "${file.name}" securely...`;
+    const navUserName =
+        document.getElementById("navUserName");
 
 
-        setTimeout(() => {
+    if (loggedIn === "true") {
 
-            status.innerHTML =
-                `✓ ${file.name} successfully indexed into private knowledge base`;
+        if (guestActions) {
+            guestActions.style.display = "none";
+        }
 
-            status.style.color =
-                "#2de38a";
+        if (userActions) {
+            userActions.style.display = "flex";
+        }
+
+        if (navUserName) {
+            navUserName.textContent =
+                userName || "User";
+        }
+
+    } else {
+
+        if (guestActions) {
+            guestActions.style.display = "flex";
+        }
+
+        if (userActions) {
+            userActions.style.display = "none";
+        }
+
+    }
+
+}
 
 
-            showToast(
-                "Document securely processed"
+/* =====================================
+   SIGNUP
+===================================== */
+
+function setupSignupForm() {
+
+    const signupForm =
+        document.getElementById("signupForm");
+
+    if (!signupForm) return;
+
+
+    signupForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById("signupName").value.trim();
+
+        const email =
+            document.getElementById("signupEmail").value.trim().toLowerCase();
+
+        const password =
+            document.getElementById("signupPassword").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+        const message =
+            document.getElementById("signupMessage");
+
+
+        if (password.length < 6) {
+
+            message.textContent =
+                "Password must contain at least 6 characters.";
+
+            message.style.color = "#ff7070";
+
+            return;
+
+        }
+
+
+        if (password !== confirmPassword) {
+
+            message.textContent =
+                "Passwords do not match.";
+
+            message.style.color = "#ff7070";
+
+            return;
+
+        }
+
+
+        /* Check Existing Account */
+
+        const existingEmail =
+            localStorage.getItem("registeredEmail");
+
+
+        if (existingEmail === email) {
+
+            message.textContent =
+                "Account already exists. Please login.";
+
+            message.style.color = "#ff7070";
+
+            return;
+
+        }
+
+
+        /* Save Account */
+
+        localStorage.setItem(
+            "registeredName",
+            name
+        );
+
+        localStorage.setItem(
+            "registeredEmail",
+            email
+        );
+
+        localStorage.setItem(
+            "registeredPassword",
+            password
+        );
+
+
+        message.textContent =
+            "Account created successfully! Redirecting to login...";
+
+        message.style.color = "#2ec27e";
+
+
+        setTimeout(function () {
+
+            window.location.href =
+                "login.html";
+
+        }, 1200);
+
+    });
+
+}
+
+
+/* =====================================
+   LOGIN
+===================================== */
+
+function setupLoginForm() {
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    if (!loginForm) return;
+
+
+    loginForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById("loginEmail").value.trim().toLowerCase();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        const message =
+            document.getElementById("loginMessage");
+
+
+        const registeredEmail =
+            localStorage.getItem("registeredEmail");
+
+        const registeredPassword =
+            localStorage.getItem("registeredPassword");
+
+        const registeredName =
+            localStorage.getItem("registeredName");
+
+
+        /* No Account */
+
+        if (!registeredEmail) {
+
+            message.textContent =
+                "No account found. Please create an account first.";
+
+            message.style.color = "#ff7070";
+
+            return;
+
+        }
+
+
+        /* Wrong Email */
+
+        if (email !== registeredEmail) {
+
+            message.textContent =
+                "Email address not found.";
+
+            message.style.color = "#ff7070";
+
+            return;
+
+        }
+
+
+        /* Wrong Password */
+
+        if (password !== registeredPassword) {
+
+            message.textContent =
+                "Incorrect password.";
+
+            message.style.color = "#ff7070";
+
+            return;
+
+        }
+
+
+        /* Successful Login */
+
+        localStorage.setItem(
+            "civicLoggedIn",
+            "true"
+        );
+
+        localStorage.setItem(
+            "civicUserName",
+            registeredName
+        );
+
+        localStorage.setItem(
+            "civicUserEmail",
+            registeredEmail
+        );
+
+
+        message.textContent =
+            "Login successful! Redirecting to CivicAI...";
+
+        message.style.color = "#2ec27e";
+
+
+        setTimeout(function () {
+
+            window.location.href =
+                "index.html";
+
+        }, 800);
+
+    });
+
+}
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+function logoutUser() {
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+
+    if (!confirmLogout) return;
+
+
+    localStorage.removeItem(
+        "civicLoggedIn"
+    );
+
+    localStorage.removeItem(
+        "civicUserName"
+    );
+
+    localStorage.removeItem(
+        "civicUserEmail"
+    );
+
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =====================================
+   COMPLAINT BUTTON
+===================================== */
+
+function handleComplaintButton() {
+
+    const loggedIn =
+        localStorage.getItem("civicLoggedIn");
+
+
+    if (loggedIn !== "true") {
+
+        const loginModal =
+            document.getElementById(
+                "loginRequiredModal"
             );
 
-        }, 1500);
+        if (loginModal) {
+
+            loginModal.classList.add("active");
+
+            document.body.style.overflow = "hidden";
+
+        }
+
+        return;
+
+    }
+
+
+    openComplaintForm();
+
+}
+
+
+/* =====================================
+   OPEN COMPLAINT FORM
+===================================== */
+
+function openComplaintForm() {
+
+    const modal =
+        document.getElementById("complaintModal");
+
+
+    if (modal) {
+
+        modal.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+        autoFillUserDetails();
 
     }
 
 }
 
 
-/* =========================
-   IMAGE PREVIEW
-========================= */
+/* =====================================
+   CLOSE COMPLAINT FORM
+===================================== */
 
-function previewImage() {
+function closeComplaintForm() {
 
-    const input =
-        document.getElementById("image-upload");
-
-
-    const preview =
-        document.getElementById("image-preview");
+    const modal =
+        document.getElementById("complaintModal");
 
 
-    const placeholder =
-        document.querySelector(".vision-placeholder");
+    if (modal) {
 
+        modal.classList.remove("active");
 
-    if (input.files && input.files[0]) {
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload = function(event) {
-
-            preview.src =
-                event.target.result;
-
-
-            preview.style.display =
-                "block";
-
-
-            if (placeholder) {
-
-                placeholder.style.display =
-                    "none";
-
-            }
-
-        };
-
-
-        reader.readAsDataURL(
-            input.files[0]
-        );
-
-
-        showToast(
-            "Inspection image ready"
-        );
+        document.body.style.overflow = "auto";
 
     }
 
 }
 
 
-/* =========================
-   VISION AI
-========================= */
+/* =====================================
+   CLOSE LOGIN REQUIRED MODAL
+===================================== */
 
-function analyzeImage() {
+function closeLoginRequired() {
 
-    const input =
-        document.getElementById("image-upload");
-
-
-    const result =
-        document.getElementById("vision-result");
+    const modal =
+        document.getElementById(
+            "loginRequiredModal"
+        );
 
 
-    if (input.files.length === 0) {
+    if (modal) {
 
-        showToast(
-            "Please upload an image first"
+        modal.classList.remove("active");
+
+        document.body.style.overflow = "auto";
+
+    }
+
+}
+
+
+/* =====================================
+   AUTO FILL USER DETAILS
+===================================== */
+
+function autoFillUserDetails() {
+
+    const loggedIn =
+        localStorage.getItem("civicLoggedIn");
+
+
+    if (loggedIn === "true") {
+
+        const name =
+            localStorage.getItem("civicUserName");
+
+        const email =
+            localStorage.getItem("civicUserEmail");
+
+
+        const fullName =
+            document.getElementById("fullName");
+
+        const emailInput =
+            document.getElementById("email");
+
+
+        if (fullName && name) {
+            fullName.value = name;
+        }
+
+
+        if (emailInput && email) {
+            emailInput.value = email;
+        }
+
+    }
+
+}
+
+
+/* =====================================
+   COMPLAINT FORM
+===================================== */
+
+function setupComplaintForm() {
+
+    const complaintForm =
+        document.getElementById("complaintForm");
+
+    if (!complaintForm) return;
+
+
+    complaintForm.addEventListener(
+        "submit",
+        analyzeComplaint
+    );
+
+}
+
+
+function analyzeComplaint(event) {
+
+    event.preventDefault();
+
+
+    const category =
+        document.getElementById("category").value;
+
+    const urgency =
+        document.getElementById("urgency").value;
+
+    const complaintText =
+        document.getElementById("complaintText").value;
+
+
+    if (!category) {
+
+        alert("Please select a category.");
+
+        return;
+
+    }
+
+
+    if (complaintText.trim().length < 10) {
+
+        alert(
+            "Please describe your complaint in more detail."
         );
 
         return;
@@ -322,321 +530,334 @@ function analyzeImage() {
     }
 
 
-    result.style.display =
-        "block";
+    const button =
+        document.querySelector(".analyze-btn");
 
 
-    result.innerHTML =
-        "⚡ Sovereign Vision AI is analyzing the inspection image...";
+    if (button) {
+
+        button.innerHTML =
+            "AI is analyzing...";
+
+        button.disabled = true;
+
+    }
 
 
-    setTimeout(() => {
+    setTimeout(function () {
 
-        result.innerHTML = `
-
-            <h3>✦ Vision Analysis Complete</h3>
-
-            <br>
-
-            <p>
-                <strong>Detected:</strong>
-                Industrial equipment components
-            </p>
-
-            <br>
-
-            <p>
-                <strong>Potential Issue:</strong>
-                Surface degradation patterns detected.
-                Physical inspection recommended.
-            </p>
-
-            <br>
-
-            <p>
-                <strong>Confidence:</strong>
-                91%
-            </p>
-
-            <br>
-
-            <p>
-                🔒 Analysis completed locally.
-                No confidential image data left the infrastructure.
-            </p>
-
-        `;
+        let department;
 
 
-        showToast(
-            "Vision AI analysis completed"
+        switch (category) {
+
+            case "Water Supply":
+
+                department =
+                    "Water Supply Department";
+
+                break;
+
+
+            case "Roads & Infrastructure":
+
+                department =
+                    "Public Works Department";
+
+                break;
+
+
+            case "Waste Management":
+
+                department =
+                    "Waste Management Department";
+
+                break;
+
+
+            case "Electricity":
+
+                department =
+                    "Electricity Department";
+
+                break;
+
+
+            case "Drainage & Sanitation":
+
+                department =
+                    "Sanitation Department";
+
+                break;
+
+
+            case "Public Health":
+
+                department =
+                    "Public Health Department";
+
+                break;
+
+
+            default:
+
+                department =
+                    "Municipal Administration";
+
+        }
+
+
+        let priority =
+            urgency;
+
+
+        const text =
+            complaintText.toLowerCase();
+
+
+        if (
+            text.includes("emergency") ||
+            text.includes("danger") ||
+            text.includes("accident") ||
+            text.includes("fire")
+        ) {
+
+            priority = "Critical";
+
+        }
+
+
+        document.getElementById(
+            "resultCategory"
+        ).textContent = category;
+
+
+        document.getElementById(
+            "resultPriority"
+        ).textContent = priority;
+
+
+        document.getElementById(
+            "resultDepartment"
+        ).textContent = department;
+
+
+        document.getElementById(
+            "aiResult"
+        ).classList.add("show");
+
+
+        if (button) {
+
+            button.innerHTML =
+                "AI Analysis Complete ✓";
+
+            button.disabled = false;
+
+        }
+
+
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+
+    }, 1200);
+
+}
+
+
+/* =====================================
+   SUBMIT COMPLAINT
+===================================== */
+
+function submitComplaint() {
+
+    const loggedIn =
+        localStorage.getItem("civicLoggedIn");
+
+
+    if (loggedIn !== "true") {
+
+        closeComplaintForm();
+
+        document.getElementById(
+            "loginRequiredModal"
+        ).classList.add("active");
+
+        return;
+
+    }
+
+
+    const complaintId =
+        "CIVIC-" +
+        Math.floor(
+            100000 + Math.random() * 900000
         );
 
-    }, 2000);
 
-}
+    const complaintData = {
 
+        id: complaintId,
 
-/* =========================
-   VIEW REPORT
-========================= */
+        name:
+            document.getElementById("fullName").value,
 
-function viewReport(type) {
+        email:
+            document.getElementById("email").value,
 
-    const modal =
-        document.getElementById("report-modal");
+        phone:
+            document.getElementById("phone").value,
 
+        location:
+            document.getElementById("location").value,
 
-    const title =
-        document.getElementById("modal-title");
+        category:
+            document.getElementById("category").value,
 
+        complaint:
+            document.getElementById("complaintText").value,
 
-    const body =
-        document.getElementById("modal-body");
+        status: "Submitted",
 
+        date:
+            new Date().toLocaleString()
 
-    if (type === "machine") {
-
-        title.innerText =
-            "Machine-17 Failure Analysis";
-
-
-        body.innerHTML = `
-
-            <h3>Executive Summary</h3>
-
-            <p>
-                AI analysis indicates a probable mechanical
-                degradation issue affecting Machine-17.
-            </p>
-
-            <br>
-
-            <h3>Probable Cause</h3>
-
-            <p>
-                Bearing degradation identified through maintenance
-                history and sensor pattern comparison.
-            </p>
-
-            <br>
-
-            <h3>Confidence Level</h3>
-
-            <p>89%</p>
-
-            <br>
-
-            <h3>Recommended Action</h3>
-
-            <p>
-                Perform physical inspection and schedule predictive
-                maintenance before further operational stress.
-            </p>
-
-            <br>
-
-            <h3>Security</h3>
-
-            <p>
-                This analysis was generated inside the sovereign
-                on-premise AI environment.
-            </p>
-
-        `;
-
-    }
-
-    else {
-
-        title.innerText =
-            "Weekly System Health Report";
+    };
 
 
-        body.innerHTML = `
+    localStorage.setItem(
 
-            <h3>Overall System Health</h3>
+        "latestComplaint",
 
-            <p>96% Healthy</p>
+        JSON.stringify(complaintData)
 
-            <br>
-
-            <h3>AI Agents</h3>
-
-            <p>
-                4 autonomous agents currently active.
-            </p>
-
-            <br>
-
-            <h3>Knowledge Base</h3>
-
-            <p>
-                328 confidential documents indexed.
-            </p>
-
-            <br>
-
-            <h3>Security Status</h3>
-
-            <p>
-                Protected. No external data transfer detected.
-            </p>
-
-            <br>
-
-            <h3>Recommendation</h3>
-
-            <p>
-                Continue monitoring alerts requiring
-                expert human approval.
-            </p>
-
-        `;
-
-    }
+    );
 
 
-    modal.style.display =
-        "flex";
+    alert(
 
-}
+        "Complaint Submitted Successfully! 🎉\n\n" +
 
+        "Complaint ID: " +
 
-/* =========================
-   CLOSE MODAL
-========================= */
+        complaintId +
 
-function closeModal() {
+        "\n\nYour complaint has been sent for processing."
+
+    );
+
 
     document.getElementById(
-        "report-modal"
-    ).style.display = "none";
+        "complaintForm"
+    ).reset();
+
+
+    document.getElementById(
+        "aiResult"
+    ).classList.remove("show");
+
+
+    closeComplaintForm();
 
 }
 
 
-window.onclick = function(event) {
+/* =====================================
+   LANGUAGE
+===================================== */
 
-    const modal =
+function setupLanguage() {
+
+    const languageSelect =
         document.getElementById(
-            "report-modal"
+            "languageSelect"
         );
 
 
-    if (event.target === modal) {
-
-        modal.style.display =
-            "none";
-
-    }
-
-};
+    if (!languageSelect) return;
 
 
-/* =========================
-   DOWNLOAD REPORT
-========================= */
-
-function downloadReport(type) {
-
-    let content = "";
-    let fileName = "";
-
-
-    if (type === "machine") {
-
-        fileName =
-            "Machine-17-Failure-Analysis.txt";
-
-
-        content = `
-SOVEREIGN AI WORKBENCH
-
-MACHINE-17 FAILURE ANALYSIS
-
-Machine ID: M-17
-
-Probable Cause:
-Bearing degradation
-
-Confidence:
-89%
-
-Recommended Action:
-Perform predictive maintenance and inspect
-bearing assembly.
-
-Security:
-Generated inside sovereign on-premise
-AI infrastructure.
-`;
-
-    }
-
-    else {
-
-        fileName =
-            "Weekly-System-Health-Report.txt";
-
-
-        content = `
-SOVEREIGN AI WORKBENCH
-
-WEEKLY SYSTEM HEALTH REPORT
-
-System Health:
-96%
-
-Active AI Agents:
-4
-
-Knowledge Base:
-328 documents
-
-Security:
-Protected
-
-Recommendation:
-Continue monitoring industrial alerts
-requiring human approval.
-`;
-
-    }
-
-
-    const blob =
-        new Blob(
-            [content],
-            {
-                type: "text/plain"
-            }
+    const savedLanguage =
+        localStorage.getItem(
+            "civicLanguage"
         );
 
 
-    const link =
-        document.createElement("a");
+    if (savedLanguage) {
+
+        languageSelect.value =
+            savedLanguage;
+
+    }
 
 
-    link.href =
-        URL.createObjectURL(blob);
+    languageSelect.addEventListener(
+        "change",
+        function () {
 
+            localStorage.setItem(
+                "civicLanguage",
+                this.value
+            );
 
-    link.download =
-        fileName;
-
-
-    document.body.appendChild(link);
-
-
-    link.click();
-
-
-    document.body.removeChild(link);
-
-
-    showToast(
-        "Report downloaded successfully"
+        }
     );
 
 }
+
+
+/* =====================================
+   CLOSE MODALS
+===================================== */
+
+window.addEventListener(
+    "click",
+    function (event) {
+
+        const complaintModal =
+            document.getElementById(
+                "complaintModal"
+            );
+
+        const loginModal =
+            document.getElementById(
+                "loginRequiredModal"
+            );
+
+
+        if (
+            event.target === complaintModal
+        ) {
+
+            closeComplaintForm();
+
+        }
+
+
+        if (
+            event.target === loginModal
+        ) {
+
+            closeLoginRequired();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            closeComplaintForm();
+
+            closeLoginRequired();
+
+        }
+
+    }
+);
